@@ -37,6 +37,7 @@ module.exports = {
     'no-unused-vars': ['warn'],
     '@typescript-eslint/semi': ['warn', 'always'],
     '@typescript-eslint/strict-boolean-expressions': 0,
+    '@typescript-eslint/indent': 0,
     'eol-last': ['error', 'always'],
     strict: ['error', 'global'],
     'no-multiple-empty-lines': [
