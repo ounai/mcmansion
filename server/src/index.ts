@@ -1,1 +1,3 @@
-console.log('Initializing...');
+import { init } from './init';
+
+init();
