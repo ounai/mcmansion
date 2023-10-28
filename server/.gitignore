@@ -131,3 +131,5 @@ dist
 
 # Build
 dist/
+
+package-lock.json

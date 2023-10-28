@@ -1,3 +1,7 @@
-import { init } from './init';
+import dotenv from 'dotenv';
 
-init();
+import { init } from './init';
+import { config } from './config';
+
+dotenv.config();
+init(config);
