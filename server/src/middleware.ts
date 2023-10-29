@@ -16,5 +16,8 @@ export const logging: RequestHandler = (req, res, next) => {
   next();
 };
 
-export const notFound: RequestHandler = (req, res, next) =>
+export const notFound: RequestHandler = (req, res, next) => {
+  console.log(`Not Found: ${req.method} ${req.originalUrl.split('?')[0]}`);
+
   res.status(404).end('Not Found');
+};

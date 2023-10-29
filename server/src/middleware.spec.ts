@@ -86,18 +86,31 @@ describe('logging middleware', () => {
 });
 
 describe('not found middleware', () => {
-  it('should work', () => {
-    const response = {} as unknown as Response;
-    const next = jest.fn();
+  let request = {
+    method: 'testMethod',
+    originalUrl: 'urlBefore?urlAfter'
+  } as Request;
+
+  const response = {} as unknown as Response;
+  const next = jest.fn();
+
+  beforeAll(() => {
+    jest.spyOn(console, 'log').mockImplementation();
 
     response.end = jest.fn();
     response.status = jest.fn(() => response);
 
-    notFound({} as Request, response, next);
+    notFound(request, response, next);
+  });
 
+  it('should return not found response', () => {
     expect(response.status).toHaveBeenCalledWith(404);
     expect(response.end).toHaveBeenCalledWith('Not Found');
 
     expect(next).not.toHaveBeenCalled();
+  });
+
+  it('should log', () => {
+    expect(console.log).toHaveBeenCalledWith('Not Found: testMethod urlBefore');
   });
 });
