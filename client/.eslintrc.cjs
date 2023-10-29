@@ -1,6 +1,9 @@
 module.exports = {
   root: true,
-  env: { browser: true, es2020: true },
+  env: {
+    browser: true,
+    es2020: true
+  },
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/strict-type-checked',
@@ -17,11 +20,45 @@ module.exports = {
     project: ['./tsconfig.json', './tsconfig.node.json'],
     tsconfigRootDir: __dirname
   },
-  plugins: ['react-refresh'],
+  plugins: [
+    'react-refresh',
+    'prefer-arrow'
+  ],
   rules: {
     'react-refresh/only-export-components': [
       'warn',
       { allowConstantExport: true }
+    ],
+    'no-unused-vars': ['warn'],
+    '@typescript-eslint/semi': ['warn', 'always'],
+    '@typescript-eslint/strict-boolean-expressions': 0,
+    '@typescript-eslint/indent': 0,
+    'eol-last': ['error', 'always'],
+    strict: ['error', 'global'],
+    'no-multiple-empty-lines': [
+      'error',
+      {
+        max: 1,
+        maxEOF: 0,
+        maxBOF: 0
+      }
+    ],
+    'prefer-arrow/prefer-arrow-functions': [
+      'error',
+      {
+        disallowPrototype: true,
+        singleReturnOnly: false,
+        classPropertiesAllowed: false
+      }
+    ],
+    'prefer-arrow-callback': [
+      'error',
+      { allowNamedFunctions: true }
+    ],
+    'func-style': [
+      'error',
+      'expression',
+      { allowArrowFunctions: true }
     ]
   }
 }
