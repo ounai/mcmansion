@@ -131,5 +131,6 @@ dist
 
 # Build
 dist/
+public/
 
 package-lock.json
