@@ -1,3 +1,5 @@
+import initRuuviDB from 'ruuvitag-database';
+
 import { init as initAPI } from './api';
 import { init as initDB } from './db';
 
@@ -8,4 +10,5 @@ export const init = async (config: Config): Promise<void> => {
 
   initAPI(config.api.port);
   await initDB(config.db);
+  await initRuuviDB({ ...config.db, dialect: 'postgres' });
 };

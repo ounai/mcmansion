@@ -1,8 +1,12 @@
+import initRuuviDB from 'ruuvitag-database';
+
 import { init } from './init';
 import * as api from './api';
 import * as db from './db';
 
 import type { Config } from './config';
+
+jest.mock('ruuvitag-database', () => jest.fn());
 
 describe('init', () => {
   const port = Symbol('port') as unknown as number;
@@ -29,5 +33,9 @@ describe('init', () => {
 
   it('should call DB init', () => {
     expect(db.init).toHaveBeenCalledWith(dbConfig);
+  });
+
+  it('should call ruuvitag-database init', () => {
+    expect(initRuuviDB).toHaveBeenCalledWith({ ...dbConfig, dialect: 'postgres' });
   });
 });
