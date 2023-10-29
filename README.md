@@ -8,4 +8,4 @@ Designed to run on a Raspberry Pi with the [800x480 touch display](https://www.r
 * `POSTGRES_DATABASE`
 * `POSTGRES_USERNAME`
 * `POSTGRES_PASSWORD`
-* `POSTGRES_ALTER` ("true" or "false", whether to sync altering changes to the database schema)
+* `POSTGRES_ALTER` (set "true" to sync altering changes to the database schema)
