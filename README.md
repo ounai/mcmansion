@@ -1,5 +1,7 @@
 # mcmansion
-Home intelligence &amp; automation
+Home intelligence &amp; automation!
+
+Designed to run on a Raspberry Pi with the [800x480 touch display](https://www.raspberrypi.com/products/raspberry-pi-touch-display).
 
 ## Environment variables
 * `POSTGRES_HOST`
