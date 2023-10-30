@@ -9,10 +9,12 @@ import { store } from '../state';
 
 const style: CSSProperties = {
   margin: 0,
-  width: '100vw',
-  height: '100vh',
-  maxWidth: '100vw',
-  maxHeight: '100vh'
+  width: '800px',
+  height: '480px',
+  maxWidth: '800px',
+  maxHeight: '480px',
+  position: 'relative',
+  backgroundColor: '#fafafa'
 };
 
 export const App = () => (
