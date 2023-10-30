@@ -1,5 +1,8 @@
 import { useState, useEffect, type CSSProperties } from 'react';
 
+import { TimeElement } from './TimeElement';
+import { DateElement } from './DateElement';
+
 const style: CSSProperties = {
   paddingLeft: '10px',
   paddingRight: '10px',
@@ -12,41 +15,6 @@ const style: CSSProperties = {
   fontFamily: 'Open Sans',
   fontSize: '30px'
 };
-
-const timeSemicolonStyle: CSSProperties = {
-  display: 'inline-block',
-  fontSize: '24px',
-  verticalAlign: 'middle',
-  marginLeft: '2px',
-  marginRight: '2px',
-  marginTop: '-8px'
-};
-
-interface TimeElementProps {
-  h: number
-  m: number
-  s: number
-}
-
-const TimeElement = ({ h, m, s }: TimeElementProps) => (
-  <>
-    <strong>{h}</strong>
-    <div style={timeSemicolonStyle}>:</div>
-    <strong>{m < 10 ? '0' : ''}{m}</strong>
-    <div style={timeSemicolonStyle}>:</div>
-    <strong>{s < 10 ? '0' : ''}{s}</strong>
-  </>
-);
-
-interface DateElementProps {
-  date: Date
-}
-
-const DateElement = ({ date }: DateElementProps) => (
-  <strong>
-    {new Intl.DateTimeFormat('fi-FI').format(date)}
-  </strong>
-);
 
 export const Clock = () => {
   const [h, setH] = useState(new Date().getHours());

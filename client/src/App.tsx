@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'react';
 
-import { Clock } from './Clock';
+import { Clock } from './clock';
 
 const style: CSSProperties = {
   margin: 0,
