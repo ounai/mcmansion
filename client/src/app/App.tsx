@@ -5,16 +5,17 @@ import type { CSSProperties } from 'react';
 import { RuuviTags } from '../ruuviTags';
 import { Clock } from '../clock';
 
+import { width, height } from './config';
 import { store } from '../state';
 
 const style: CSSProperties = {
-  margin: 0,
-  width: '800px',
-  height: '480px',
-  maxWidth: '800px',
-  maxHeight: '480px',
   position: 'relative',
-  backgroundColor: '#fafafa'
+  backgroundColor: '#fafafa',
+  margin: 0,
+  width,
+  height,
+  maxWidth: width,
+  maxHeight: height
 };
 
 export const App = () => (
