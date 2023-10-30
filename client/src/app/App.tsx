@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import type { CSSProperties } from 'react';
 
 import { RuuviTags } from '../ruuviTags';
+import { Settings } from '../settings';
 import { Clock } from '../clock';
 
 import { width, height } from './config';
@@ -22,6 +23,7 @@ export const App = () => (
   <Provider store={store}>
     <div style={style}>
       <RuuviTags />
+      <Settings />
       <Clock />
     </div>
   </Provider>

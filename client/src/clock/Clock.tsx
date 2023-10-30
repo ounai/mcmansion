@@ -6,7 +6,7 @@ import { DateElement } from './DateElement';
 const style: CSSProperties = {
   paddingLeft: '10px',
   paddingRight: '10px',
-  backgroundColor: 'black',
+  backgroundColor: 'var(--bs-body-color)',
   color: 'white',
   width: 'fit-content',
   position: 'absolute',
