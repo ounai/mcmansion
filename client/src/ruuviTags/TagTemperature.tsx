@@ -1,13 +1,17 @@
+import type { CSSProperties } from 'react';
+
 interface Props {
   value: string
 }
 
+const style: CSSProperties = {
+  fontFamily: 'Arial',
+  marginTop: '-6px',
+  marginBottom: '-6px'
+};
+
 export const TagTemperature = ({ value }: Props) => (
-  <div style={{
-    fontFamily: 'Arial',
-    marginTop: '-6px',
-    marginBottom: '-6px'
-  }}>
+  <div style={style}>
     <strong style={{ fontSize: '40px' }}>
       {Number(value).toFixed(1)}
     </strong>
