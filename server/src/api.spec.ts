@@ -1,5 +1,6 @@
 import http from 'http';
 import express, { type RequestHandler } from 'express';
+import cors from 'cors';
 
 import { app, init as initAPI } from './api';
 
@@ -7,6 +8,8 @@ import {
   logging as loggingMiddleware,
   notFound as notFoundMiddleware
 } from './middleware';
+
+jest.mock('cors');
 
 describe('init', () => {
   const port = Symbol('port') as unknown as number;
@@ -19,6 +22,7 @@ describe('init', () => {
 
   beforeAll(async () => {
     const staticMock = (s: string) => s === 'public' ? staticResult : null;
+    const urlencodedMock = ({ extended }: { extended: boolean }) => extended ? urlencodedResult : null;
 
     const getFilenamesMock = (path: string, ext?: string): string[] =>
       (path === './src/routes/v1' && ext === 'js')
@@ -30,7 +34,7 @@ describe('init', () => {
 
     jest.spyOn(express, 'static').mockImplementation(staticMock as typeof express.static);
     jest.spyOn(express, 'json').mockImplementation((() => jsonResult) as typeof express.json);
-    jest.spyOn(express, 'urlencoded').mockImplementation((() => urlencodedResult) as typeof express.urlencoded);
+    jest.spyOn(express, 'urlencoded').mockImplementation(urlencodedMock as typeof express.urlencoded);
 
     await initAPI(port);
   });
@@ -48,8 +52,12 @@ describe('init', () => {
       expect(app.use).toHaveBeenNthCalledWith(3, urlencodedResult);
     });
 
+    it('should use cors middleware', () => {
+      expect(cors).toHaveBeenCalled();
+    });
+
     it('should use logging middleware', () => {
-      expect(app.use).toHaveBeenNthCalledWith(4, '/api', loggingMiddleware);
+      expect(app.use).toHaveBeenNthCalledWith(5, '/api', loggingMiddleware);
     });
 
     it('should use not found middleware last', () => {

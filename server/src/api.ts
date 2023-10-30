@@ -1,5 +1,6 @@
 import express from 'express';
 import http from 'http';
+import cors from 'cors';
 
 import { v1 as routes } from './routes';
 
@@ -18,7 +19,10 @@ export const init = (port: number): void => {
 
   // Body parsing
   app.use(express.json());
-  app.use(express.urlencoded());
+  app.use(express.urlencoded({ extended: true }));
+
+  // Add cross-origin headers
+  app.use(cors());
 
   // Log requests
   app.use('/api', loggingMiddleware);
