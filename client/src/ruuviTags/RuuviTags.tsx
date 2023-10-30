@@ -1,8 +1,10 @@
+import { useEffect } from 'react';
+
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 import { useGet } from '../api';
-
+import { ruuviTagUpdateIntervalMs } from '../app';
 import { useSelector } from '../state';
 import { selectRuuviTagSelections } from '../state/ruuviTagSelections';
 
@@ -13,7 +15,15 @@ import type { RuuviTagData, NamedRuuviTagData } from '.';
 
 export const RuuviTags = () => {
   const ruuviTagSelections = useSelector(selectRuuviTagSelections);
-  const { data: ruuviTagData, loading, error } = useGet<RuuviTagData[]>('/ruuvi-tag-data');
+  const { data: ruuviTagData, loading, error, update } = useGet<RuuviTagData[]>('/ruuvi-tag-data');
+
+  useEffect(() => {
+    const interval = setInterval(update, ruuviTagUpdateIntervalMs);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [update]);
 
   if (ruuviTagData === null) {
     return <NoData name="temperature" loading={loading} error={error} />;

@@ -17,7 +17,7 @@ interface Dependencies {
 
 const useGet = <T>(
   path: string,
-  options: Options<Body> & Dependencies = {}
+  options?: Options<Body> & Dependencies
 ): ReturnValue<T> => {
   const { data, loading, error, submit: update, cancel } = useAPI<T>('GET', path, options);
 
@@ -29,7 +29,7 @@ const useGet = <T>(
 		};
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, options.dependencies ?? []);
+  }, options?.dependencies ?? []);
 
   return { data, loading, error, update, cancel };
 };

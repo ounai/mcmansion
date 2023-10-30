@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useCallback } from 'react';
 import type { Dispatch, SetStateAction, MutableRefObject } from 'react';
 
 import { config } from '.';
@@ -15,11 +15,11 @@ interface ReturnValue<T> {
 const fetchData = async <T>(
   method: Method,
   path: string,
-  options: Options<Body> = {},
   setData: Dispatch<SetStateAction<T | null>>,
   setLoading: Dispatch<SetStateAction<boolean>>,
   setError: Dispatch<SetStateAction<Error | null>>,
-  abortController: MutableRefObject<AbortController | null>
+  abortController: MutableRefObject<AbortController | null>,
+  options?: Options<Body>
 ): Promise<void> => {
   if (!path.startsWith('/')) {
     throw new Error(`Invalid API path "${path}" (must start with /)`);
@@ -36,7 +36,7 @@ const fetchData = async <T>(
 
   const url = ['http://', config.host, ':', config.port.toString(), '/api/', config.version, path];
 
-  if (options.params && Object.keys(options.params).length > 0) {
+  if (options?.params && Object.keys(options.params).length > 0) {
     url.push('?', new URLSearchParams(options.params).toString());
   }
 
@@ -46,9 +46,9 @@ const fetchData = async <T>(
       signal,
       headers: {
         'Content-Type': 'application/json',
-        ...options.headers
+        ...options?.headers
       },
-      body: JSON.stringify(options.body)
+      body: JSON.stringify(options?.body)
     });
 
     if (response.status === 200) {
@@ -76,7 +76,7 @@ const fetchData = async <T>(
 const useAPI = <T>(
   method: Method,
   path: string,
-  options: Options<Body> = {}
+  options?: Options<Body>
 ): ReturnValue<T> => {
   const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
@@ -84,9 +84,9 @@ const useAPI = <T>(
 
   const abortController = useRef<AbortController | null>(null);
 
-  const submit = () => {
-    void fetchData(method, path, options, setData, setLoading, setError, abortController);
-  };
+  const submit = useCallback(() => {
+    void fetchData(method, path, setData, setLoading, setError, abortController, options);
+  }, [method, options, path]);
 
   const cancel = () => {
     abortController.current?.abort();
