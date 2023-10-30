@@ -11,7 +11,7 @@ const style: CSSProperties = {
 
 export const Settings = () => (
   <div style={style}>
-    <Button style={{ padding: '9px 10px 10px 10px', borderRadius: 0 }} variant="dark">
+    <Button style={{ padding: '11px 10px 10px 10px', borderRadius: 0 }} variant="dark">
       <GearFill size={24} />
     </Button>
   </div>

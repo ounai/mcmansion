@@ -1,19 +1,19 @@
 import { useState, useEffect, type CSSProperties } from 'react';
 
+import Button from 'react-bootstrap/Button';
+
 import { TimeElement } from './TimeElement';
 import { DateElement } from './DateElement';
 
 const style: CSSProperties = {
-  paddingLeft: '10px',
-  paddingRight: '10px',
-  backgroundColor: 'var(--bs-body-color)',
-  color: 'white',
+  padding: '0 10px 0 10px',
   width: 'fit-content',
   position: 'absolute',
   bottom: 0,
   right: 0,
   fontFamily: 'Open Sans',
-  fontSize: '30px'
+  fontSize: '30px',
+  borderRadius: 0
 };
 
 export const Clock = () => {
@@ -45,10 +45,10 @@ export const Clock = () => {
   };
 
   return (
-    <div onClick={toggleShowDate} style={style}>
+    <Button variant="dark" onClick={toggleShowDate} style={style}>
       {showDate
         ? <DateElement date={date} />
         : <TimeElement h={h} m={m} s={s} />}
-    </div>
+    </Button>
   );
 };
