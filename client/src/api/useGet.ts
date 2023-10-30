@@ -15,7 +15,7 @@ interface Dependencies {
   dependencies?: any[];
 }
 
-const useGet = <T, Body>(
+const useGet = <T>(
   path: string,
   options: Options<Body> & Dependencies = {}
 ): ReturnValue<T> => {
