@@ -35,6 +35,11 @@ const reducers = {
     }
 
     localStorage.setItem(localStorageKey, JSON.stringify(state.selections));
+  },
+  setRuuviTagName: (state: RuuviTagSelectionsState, action: PayloadAction<RuuviTagSelection>) => {
+    state.selections = state.selections.map(selection => selection.tagId === action.payload.tagId ? action.payload : selection);
+
+    localStorage.setItem(localStorageKey, JSON.stringify(state.selections));
   }
 };
 
@@ -49,7 +54,8 @@ export const selectRuuviTagSelections = (state: RootState): RuuviTagSelection[] 
 
 export const {
   setRuuviTagSelections,
-  toggleRuuviTagSelection
+  toggleRuuviTagSelection,
+  setRuuviTagName
 } = ruuviTagSelectionsSlice.actions;
 
 export default ruuviTagSelectionsSlice.reducer;
