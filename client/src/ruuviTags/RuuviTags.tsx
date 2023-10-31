@@ -1,32 +1,21 @@
-import { useEffect } from 'react';
-
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-import { useGet } from '../api';
-import { ruuviTagUpdateIntervalMs } from '../app';
+import { useRuuviTagData } from './useRuuviTagData';
 import { useSelector } from '../state';
 import { selectRuuviTagSelections } from '../state/ruuviTagSelections';
 
 import { RuuviTag } from './RuuviTag';
 import { NoData } from '../shared';
 
-import type { RuuviTagData, NamedRuuviTagData } from '.';
+import type { NamedRuuviTagData } from '.';
 
 export const RuuviTags = () => {
   const ruuviTagSelections = useSelector(selectRuuviTagSelections);
-  const { data: ruuviTagData, loading, error, update } = useGet<RuuviTagData[]>('/ruuvi-tag-data');
-
-  useEffect(() => {
-    const interval = setInterval(update, ruuviTagUpdateIntervalMs);
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, [update]);
+  const { ruuviTagData, loading, error } = useRuuviTagData();
 
   if (ruuviTagData === null) {
-    return <NoData name="temperature" loading={loading} error={error} />;
+    return <NoData name="RuuviTag" loading={loading} error={error} />;
   }
 
   // Inner join client selections & server data
@@ -37,10 +26,10 @@ export const RuuviTags = () => {
   });
 
   return (
-    <Row>
+    <Row style={{ width: '100vw' }}>
       {filteredRuuviTagData.map(tagData =>
-        <Col key={tagData.name}>
-          <RuuviTag key={tagData.name} ruuviTagData={tagData} />
+        <Col key={tagData.tagId}>
+          <RuuviTag ruuviTagData={tagData} />
         </Col>
       )}
     </Row>

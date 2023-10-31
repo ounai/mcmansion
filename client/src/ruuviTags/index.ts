@@ -1,4 +1,5 @@
 export * from './RuuviTags';
+export * from './RuuviTagSelector';
 
 export interface RuuviTagData {
   tagId: string

@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { RootState } from '.';
+import { roomNames } from '../app';
 
 import type { RuuviTagSelection } from '../ruuviTags';
 
@@ -22,6 +23,18 @@ const reducers = {
     localStorage.setItem(localStorageKey, JSON.stringify(action.payload));
 
     state.selections = action.payload;
+  },
+  toggleRuuviTagSelection: (state: RuuviTagSelectionsState, action: PayloadAction<string>) => {
+    if (!state.selections.find(tag => tag.tagId === action.payload)) {
+      state.selections.push({
+        tagId: action.payload,
+        name: roomNames[0]
+      });
+    } else {
+      state.selections = state.selections.filter(({ tagId }) => tagId !== action.payload);
+    }
+
+    localStorage.setItem(localStorageKey, JSON.stringify(state.selections));
   }
 };
 
@@ -35,7 +48,8 @@ export const selectRuuviTagSelections = (state: RootState): RuuviTagSelection[] 
   state.ruuviTagSelections.selections;
 
 export const {
-  setRuuviTagSelections
+  setRuuviTagSelections,
+  toggleRuuviTagSelection
 } = ruuviTagSelectionsSlice.actions;
 
 export default ruuviTagSelectionsSlice.reducer;
