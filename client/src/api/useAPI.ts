@@ -12,16 +12,16 @@ interface ReturnValue<T> {
   cancel: () => void
 }
 
-const fetchData = async <T>(
+const fetchData = async <T, RequestBody>(
   method: Method,
   path: string,
   setData: Dispatch<SetStateAction<T | null>>,
   setLoading: Dispatch<SetStateAction<boolean>>,
   setError: Dispatch<SetStateAction<Error | null>>,
   abortController: MutableRefObject<AbortController | null>,
-  options?: Options<Body>
+  options?: Options<RequestBody>
 ): Promise<void> => {
-  if (!path.startsWith('/')) {
+  if (!options?.external && !path.startsWith('/')) {
     throw new Error(`Invalid API path "${path}" (must start with /)`);
   }
 
@@ -75,10 +75,10 @@ const fetchData = async <T>(
   setLoading(false);
 };
 
-const useAPI = <T>(
+const useAPI = <T, RequestBody>(
   method: Method,
   path: string,
-  options?: Options<Body>
+  options?: Options<RequestBody>
 ): ReturnValue<T> => {
   const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState<boolean>(true);

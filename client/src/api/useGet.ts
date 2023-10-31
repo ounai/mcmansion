@@ -17,9 +17,9 @@ interface Dependencies {
 
 const useGet = <T>(
   path: string,
-  options?: Options<Body> & Dependencies
+  options?: Options<never> & Dependencies
 ): ReturnValue<T> => {
-  const { data, loading, error, submit: update, cancel } = useAPI<T>('GET', path, options);
+  const { data, loading, error, submit: update, cancel } = useAPI<T, never>('GET', path, options);
 
   useEffect(() => {
     update();

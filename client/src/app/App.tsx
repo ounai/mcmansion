@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import type { CSSProperties } from 'react';
 
 import { RuuviTags } from '../ruuviTags';
+import { Transit } from '../transit';
 import { SettingsButton } from '../settings';
 import { Clock } from '../clock';
 
@@ -22,7 +23,15 @@ const style: CSSProperties = {
 export const App = () => (
   <Provider store={store}>
     <div style={style}>
+      <Transit />
+
+      <hr style={{
+        marginTop: 0,
+        marginBottom: '10px'
+      }} />
+
       <RuuviTags />
+
       <SettingsButton />
       <Clock />
     </div>

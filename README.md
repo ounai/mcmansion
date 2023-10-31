@@ -9,3 +9,4 @@ Designed to run on a Raspberry Pi with the [800x480 touch display](https://www.r
 * `POSTGRES_USERNAME`
 * `POSTGRES_PASSWORD`
 * `POSTGRES_ALTER` (set "true" to sync altering changes to the database schema)
+* `DIGITRANSIT_SUBSCRIPTION_KEY` (one can be acquired [here](https://portal-api.digitransit.fi))
