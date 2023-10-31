@@ -34,7 +34,9 @@ const fetchData = async <T>(
   setError(null);
   setLoading(true);
 
-  const url = ['http://', config.host, ':', config.port.toString(), '/api/', config.version, path];
+  const url = options?.external
+    ? [path]
+    : ['http://', config.host, ':', config.port.toString(), '/api/', config.version, path];
 
   if (options?.params && Object.keys(options.params).length > 0) {
     url.push('?', new URLSearchParams(options.params).toString());

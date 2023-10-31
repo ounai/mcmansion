@@ -7,6 +7,7 @@ export interface Options<Body> {
   headers?: Record<string, string>
   params?: Record<string, string>
   body?: Body
+  external?: boolean
 }
 
 export { useAPI, useGet };
