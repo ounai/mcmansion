@@ -11,7 +11,7 @@ interface ReturnValue<T> {
 }
 
 interface Dependencies {
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   dependencies?: any[];
 }
 
@@ -25,8 +25,8 @@ const useGet = <T>(
     update();
 
     return () => {
-			cancel();
-		};
+      cancel();
+    };
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, options?.dependencies ?? []);
