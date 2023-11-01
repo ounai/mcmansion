@@ -26,7 +26,7 @@ export const RuuviTags = () => {
   });
 
   return (
-    <Row style={{ width: '100vw' }}>
+    <Row style={{ width: '100%', margin: 0 }}>
       {filteredRuuviTagData.map(tagData =>
         <Col key={tagData.tagId}>
           <RuuviTag ruuviTagData={tagData} />
