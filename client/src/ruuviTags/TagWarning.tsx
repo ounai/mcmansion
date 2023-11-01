@@ -21,13 +21,14 @@ export const TagWarning = ({ ruuviTagData }: Props) => {
     yesterday.setHours(yesterday.getHours() - 23);
 
     // Less than 23h ago -> show time of last update, otherwise date
-    const displayString = tagUpdatedAt < yesterday
-      ? tagUpdatedAt.toLocaleDateString(locale)
-      : tagUpdatedAt.toLocaleTimeString(locale);
+    const displayDateString = tagUpdatedAt < yesterday;
+
+    const dateString = tagUpdatedAt.toLocaleDateString(locale);
+    const timeString = tagUpdatedAt.toLocaleTimeString(locale);
 
     return (
       <div style={style}>
-        (last update at {displayString})
+        (last update {displayDateString ? 'on' : 'at'} {displayDateString ? dateString : timeString})
       </div>
     );
   }
