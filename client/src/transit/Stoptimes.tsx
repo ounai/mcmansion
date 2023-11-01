@@ -97,7 +97,7 @@ export const Stoptimes = ({ stoptimes }: Props) => (
             className="text-muted"
             style={{
               fontSize: '12px',
-              verticalAlign: 'bottom',
+              verticalAlign: 'middle',
               paddingLeft: '4px',
               whiteSpace: 'nowrap',
               overflow: 'hidden'
