@@ -19,10 +19,10 @@ export const RuuviTags = () => {
   }
 
   // Inner join client selections & server data
-  const filteredRuuviTagData: NamedRuuviTagData[] = ruuviTagData.flatMap(tag => {
-    const name = ruuviTagSelections.find(({ tagId }) => tagId === tag.tagId)?.name;
+  const filteredRuuviTagData: NamedRuuviTagData[] = ruuviTagSelections.flatMap(({ tagId, name }) => {
+    const tag = ruuviTagData.find(tag => tag.tagId === tagId);
 
-    return name !== undefined ? [{ ...tag, name }] : [];
+    return tag ? [{ ...tag, name }] : [];
   });
 
   return (
