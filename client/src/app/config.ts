@@ -14,7 +14,8 @@ export const roomNames = [
   'Dining Room',
   'Balcony',
   'Bathroom',
-  'Sauna'
+  'Sauna',
+  'Outside'
 ];
 
 export const transitApiUrl = 'https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql';
