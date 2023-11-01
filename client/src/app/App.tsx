@@ -4,6 +4,7 @@ import type { CSSProperties } from 'react';
 
 import { RuuviTags } from '../ruuviTags';
 import { Transit } from '../transit';
+import { ElectricityPrices } from '../electricityPrices';
 import { SettingsButton } from '../settings';
 import { Clock } from '../clock';
 
@@ -31,6 +32,13 @@ export const App = () => (
       }} />
 
       <RuuviTags />
+
+      <hr style={{
+        marginTop: '10px',
+        marginBottom: '10px'
+      }} />
+
+      <ElectricityPrices />
 
       <SettingsButton />
       <Clock />
