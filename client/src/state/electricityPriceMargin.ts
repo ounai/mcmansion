@@ -17,9 +17,11 @@ const initialState: ElectricityPriceMarginState = {
 
 const reducers = {
   setElectricityPriceMargin: (state: ElectricityPriceMarginState, action: PayloadAction<number>) => {
-    state.margin = action.payload;
+    const rounded = Math.round(action.payload * 100) / 100;
 
-    localStorage.setItem(localStorageKey, action.payload.toString());
+    state.margin = rounded;
+
+    localStorage.setItem(localStorageKey, rounded.toString());
   }
 };
 
