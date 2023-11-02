@@ -7,10 +7,12 @@ import {
 } from 'react-redux';
 
 import ruuviTagSelections from './ruuviTagSelections';
+import electricityPriceMargin from './electricityPriceMargin';
 
 export const store = configureStore({
   reducer: {
-    ruuviTagSelections
+    ruuviTagSelections,
+    electricityPriceMargin
   }
 });
 

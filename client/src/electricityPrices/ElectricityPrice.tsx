@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'react';
 
-import type { ElectricityPrice as Props } from '.';
+import type { ElectricityPriceData as Props } from '.';
 
 const formatHour = (date: Date): string =>
   `${date.getHours() < 10 ? '0' : ''}${date.getHours()}`;

@@ -1,13 +1,17 @@
 import { useState, useEffect } from 'react';
 
 import { useGet } from '../api';
+import { useSelector } from '../state';
+import { selectElectricityPriceMargin } from '../state/electricityPriceMargin';
 
-import type { ElectricityPrices } from '.';
+import type { ElectricityPricesData } from '.';
 
 export const useElectricityPricesData = () => {
+  const margin = useSelector(selectElectricityPriceMargin);
+
   const [hour, setHour] = useState(new Date().getHours());
 
-  const { data, loading, error, update } = useGet<ElectricityPrices>('/electricity-prices');
+  const { data, loading, error, update } = useGet<ElectricityPricesData>('/electricity-prices');
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -24,5 +28,11 @@ export const useElectricityPricesData = () => {
     };
   }, [hour, update]);
 
-  return { electricityPricesData: data?.prices ?? null, loading, error };
+  return {
+    electricityPricesData: data === null
+      ? null
+      : data.prices.map(p => ({ ...p, price: p.price + margin })),
+    loading,
+    error
+  };
 };

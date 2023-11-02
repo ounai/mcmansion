@@ -24,14 +24,13 @@ export const ElectricityPrices = () => {
 
   const now = new Date();
 
-  // TODO: Implement user-defined margin
-  const pricesWithMargin = electricityPricesData
+  const futurePrices = electricityPricesData
     .filter(p => new Date(p.startDate) > now)
     .sort((a, b) => new Date(a.startDate).getTime() - new Date(b.startDate).getTime());
 
   return (
     <Row style={rowStyle}>
-      {pricesWithMargin.map(({ startDate, endDate, price }) => (
+      {futurePrices.map(({ startDate, endDate, price }) => (
         <Col key={startDate}>
           <ElectricityPrice startDate={startDate} endDate={endDate} price={price} />
         </Col>

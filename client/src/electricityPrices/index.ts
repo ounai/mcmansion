@@ -1,11 +1,11 @@
 export * from './ElectricityPrices';
 
-export interface ElectricityPrice {
+export interface ElectricityPriceData {
   price: number
   startDate: string
   endDate: string
 }
 
-export interface ElectricityPrices {
-  prices: ElectricityPrice[]
+export interface ElectricityPricesData {
+  prices: ElectricityPriceData[]
 }

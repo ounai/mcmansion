@@ -20,9 +20,9 @@ const initialState: RuuviTagSelectionsState = {
 
 const reducers = {
   setRuuviTagSelections: (state: RuuviTagSelectionsState, action: PayloadAction<RuuviTagSelection[]>) => {
-    localStorage.setItem(localStorageKey, JSON.stringify(action.payload));
-
     state.selections = action.payload;
+
+    localStorage.setItem(localStorageKey, JSON.stringify(action.payload));
   },
   toggleRuuviTagSelection: (state: RuuviTagSelectionsState, action: PayloadAction<string>) => {
     if (!state.selections.find(tag => tag.tagId === action.payload)) {
