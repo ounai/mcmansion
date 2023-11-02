@@ -25,7 +25,7 @@ export const ElectricityPrices = () => {
   const now = new Date();
 
   const futurePrices = electricityPricesData
-    .filter(p => new Date(p.startDate) > now)
+    .filter(p => new Date(p.endDate) > now)
     .sort((a, b) => new Date(a.startDate).getTime() - new Date(b.startDate).getTime());
 
   return (
