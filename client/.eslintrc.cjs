@@ -30,7 +30,7 @@ module.exports = {
       { allowConstantExport: true }
     ],
     'react/prop-types': 0,
-    'no-unused-vars': ['warn'],
+    '@typescript-eslint/no-unused-vars': ['warn'],
     '@typescript-eslint/semi': ['warn', 'always'],
     '@typescript-eslint/strict-boolean-expressions': 0,
     '@typescript-eslint/indent': 0,
