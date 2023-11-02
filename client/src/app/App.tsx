@@ -1,15 +1,13 @@
-import { Provider } from 'react-redux';
-
 import type { CSSProperties } from 'react';
 
+import { width, height } from './config';
+
+import { AppState } from './AppState';
 import { RuuviTags } from '../ruuviTags';
 import { Transit } from '../transit';
 import { ElectricityPrices } from '../electricityPrices';
 import { SettingsButton } from '../settings';
 import { Clock } from '../clock';
-
-import { width, height } from './config';
-import { store } from '../state';
 
 const style: CSSProperties = {
   position: 'relative',
@@ -22,7 +20,7 @@ const style: CSSProperties = {
 };
 
 export const App = () => (
-  <Provider store={store}>
+  <AppState>
     <div style={style}>
       <Transit />
 
@@ -43,5 +41,5 @@ export const App = () => (
       <SettingsButton />
       <Clock />
     </div>
-  </Provider>
+  </AppState>
 );

@@ -10,6 +10,14 @@ export interface Options<RequestBody> {
   external?: boolean
 }
 
+export interface APIResponse<T> {
+  data: T | null
+  loading: boolean
+  error: Error | null
+  submit: () => void
+  cancel: () => void
+}
+
 export { useAPI, useGet };
 
 export const usePost = <T, RequestBody>(path: string, options: Options<RequestBody>) => useAPI<T, RequestBody>('POST', path, options);

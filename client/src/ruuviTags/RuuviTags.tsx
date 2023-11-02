@@ -1,22 +1,19 @@
+import { useContext } from 'react';
+
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-import { useRuuviTagData } from './useRuuviTagData';
 import { useSelector } from '../state';
 import { selectRuuviTagSelections } from '../state/ruuviTagSelections';
+import { RuuviTagDataContext } from '.';
 
 import { RuuviTag } from './RuuviTag';
-import { NoData } from '../shared';
 
 import type { NamedRuuviTagData } from '.';
 
 export const RuuviTags = () => {
   const ruuviTagSelections = useSelector(selectRuuviTagSelections);
-  const { ruuviTagData, loading, error } = useRuuviTagData();
-
-  if (ruuviTagData === null) {
-    return <NoData name="RuuviTag" loading={loading} error={error} />;
-  }
+  const ruuviTagData = useContext(RuuviTagDataContext);
 
   // Inner join client selections & server data
   const filteredRuuviTagData: NamedRuuviTagData[] = ruuviTagSelections.flatMap(({ tagId, name }) => {

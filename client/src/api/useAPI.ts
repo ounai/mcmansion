@@ -2,15 +2,7 @@ import { useState, useRef, useCallback } from 'react';
 import type { Dispatch, SetStateAction, MutableRefObject } from 'react';
 
 import { config } from '.';
-import type { Method, Options } from '.';
-
-interface ReturnValue<T> {
-  data: T | null
-  loading: boolean
-  error: Error | null
-  submit: () => void
-  cancel: () => void
-}
+import type { Method, Options, APIResponse } from '.';
 
 const fetchData = async <T, RequestBody>(
   method: Method,
@@ -79,7 +71,7 @@ const useAPI = <T, RequestBody>(
   method: Method,
   path: string,
   options?: Options<RequestBody>
-): ReturnValue<T> => {
+): APIResponse<T> => {
   const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<Error | null>(null);

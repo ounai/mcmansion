@@ -1,14 +1,11 @@
-import { useRuuviTagData } from './useRuuviTagData';
+import { useContext } from 'react';
 
-import { NoData } from '../shared';
+import { RuuviTagDataContext } from '.';
+
 import { TagSelect } from './TagSelect';
 
 export const RuuviTagSelector = () => {
-  const { ruuviTagData, loading, error } = useRuuviTagData();
-
-  if (ruuviTagData === null) {
-    return <NoData name="RuuviTag" loading={loading} error={error} />;
-  }
+  const ruuviTagData = useContext(RuuviTagDataContext);
 
   return ruuviTagData
     .sort((a, b) => a.tagId.localeCompare(b.tagId))
