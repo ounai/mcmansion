@@ -39,6 +39,7 @@ export const App = () => (
       <ElectricityPrices />
 
       <SettingsButton />
+
       <Clock />
     </div>
   </AppState>

@@ -5,11 +5,11 @@ import { AppState } from './AppState';
 import type { Children } from '../shared';
 
 jest.mock('react-redux', () => ({
-  Provider: ({ children }: Children) => <div data-testid="react-redux-provider">{children}</div>
+  Provider: ({ children }: Children) => <div data-testid="Provider">{children}</div>
 }));
 
-jest.mock('../ruuviTags/RuuviTagDataContext', () => ({
-  RuuviTagDataContextProvider: ({ children }: Children) => <div data-testid="ruuvi-tag-data-context-provider">{children}</div>
+jest.mock('../ruuviTags', () => ({
+  RuuviTagDataContextProvider: ({ children }: Children) => <div data-testid="RuuviTagDataContextProvider">{children}</div>
 }));
 
 describe('AppState', () => {
@@ -20,11 +20,11 @@ describe('AppState', () => {
   });
 
   it('should render react-redux provider', () => {
-    expect(component.getByTestId('react-redux-provider')).toBeTruthy();
+    expect(component.getByTestId('Provider')).toBeTruthy();
   });
 
   it('should render RuuviTag data context provider', () => {
-    expect(component.getByTestId('ruuvi-tag-data-context-provider')).toBeTruthy();
+    expect(component.getByTestId('RuuviTagDataContextProvider')).toBeTruthy();
   });
 
   it('should render inner content', () => {
