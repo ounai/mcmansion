@@ -21,7 +21,10 @@ const fetchData = async <T, RequestBody>(
   abortController.current?.abort();
 
   abortController.current = new AbortController();
-  const signal = abortController.current.signal;
+
+  // Since the testing environment does not understand how AbortController works:
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+  const signal = abortController.current?.signal;
 
   setError(null);
   setLoading(true);
