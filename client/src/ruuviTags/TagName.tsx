@@ -6,7 +6,8 @@ interface Props {
 
 const style: CSSProperties = {
   fontWeight: 'bold',
-  fontFamily: 'Arial'
+  fontFamily: 'Arial',
+  whiteSpace: 'nowrap'
 };
 
 export const TagName = ({ value }: Props) => (

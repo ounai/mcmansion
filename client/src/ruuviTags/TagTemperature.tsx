@@ -7,7 +7,16 @@ interface Props {
 const style: CSSProperties = {
   fontFamily: 'Arial',
   marginTop: '-6px',
-  marginBottom: '-6px'
+  marginBottom: '-6px',
+  whiteSpace: 'nowrap'
+};
+
+const symbolStyle: CSSProperties = {
+  marginLeft: '4px',
+  fontSize: '20px',
+  marginTop: '9px',
+  display: 'inline-block',
+  verticalAlign: 'top'
 };
 
 export const TagTemperature = ({ value }: Props) => (
@@ -16,13 +25,7 @@ export const TagTemperature = ({ value }: Props) => (
       {Number(value).toFixed(1)}
     </strong>
 
-    <div style={{
-      marginLeft: '4px',
-      fontSize: '20px',
-      marginTop: '9px',
-      display: 'inline-block',
-      verticalAlign: 'top'
-    }}>
+    <div style={symbolStyle}>
       <strong>°</strong>C
     </div>
   </div>

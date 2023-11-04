@@ -3,9 +3,10 @@ import Form from 'react-bootstrap/Form';
 import { useDispatch, useSelector } from '../state';
 import { toggleRuuviTagSelection, selectRuuviTagSelections } from '../state/ruuviTagSelections';
 
-import type { RuuviTagData } from '.';
-
 import { TagSelectLabel } from './TagSelectLabel';
+import { ruuviTagMaxSelectionCount } from '../app';
+
+import type { RuuviTagData } from '.';
 
 interface Props {
   tag: RuuviTagData
@@ -16,8 +17,9 @@ export const TagSelect = ({ tag }: Props) => {
   const ruuviTagSelections = useSelector(selectRuuviTagSelections);
 
   const checked = ruuviTagSelections.some(({ tagId }) => tagId === tag.tagId);
+  const disabled = !checked && ruuviTagSelections.length >= ruuviTagMaxSelectionCount;
 
-  const onChange = () => {
+  const toggleSelection = () => {
     dispatch(toggleRuuviTagSelection(tag.tagId));
   };
 
@@ -27,7 +29,8 @@ export const TagSelect = ({ tag }: Props) => {
       id={`ruuvitag-switch-${tag.tagId}`}
       label={<TagSelectLabel tag={tag} checked={checked} />}
       checked={checked}
-      onChange={onChange}
+      disabled={disabled}
+      onChange={toggleSelection}
     />
   );
 };
