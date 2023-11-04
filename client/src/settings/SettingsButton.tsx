@@ -1,33 +1,28 @@
-import { useState, type CSSProperties } from 'react';
+import { useState } from 'react';
 
 import Button from 'react-bootstrap/Button';
 import { GearFill } from 'react-bootstrap-icons';
 
 import { SettingsModal } from './SettingsModal';
-
-const style: CSSProperties = {
-  position: 'absolute',
-  bottom: 0,
-  left: 0
-};
+import { appButtonStyle } from '../app';
 
 export const SettingsButton = () => {
   const [show, setShow] = useState(false);
 
-  const onClick = () => { setShow(true); };
-  const onHide = () => { setShow(false); };
+  const openSettingsModal = () => { setShow(true); };
+  const closeSettingsModal = () => { setShow(false); };
 
   return (
-    <div style={style}>
-      <SettingsModal show={show} onHide={onHide} />
+    <>
+      <SettingsModal show={show} onHide={closeSettingsModal} />
 
       <Button
-        style={{ padding: '11px 10px 10px 10px', borderRadius: 0 }}
+        style={appButtonStyle}
         variant="dark"
-        onClick={onClick}
+        onClick={openSettingsModal}
       >
         <GearFill size={24} />
       </Button>
-    </div>
+    </>
   );
 };

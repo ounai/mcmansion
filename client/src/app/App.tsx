@@ -6,7 +6,7 @@ import { AppState } from './AppState';
 import { RuuviTags } from '../ruuviTags';
 import { Transit } from '../transit';
 import { ElectricityPrices } from '../electricityPrices';
-import { SettingsButton } from '../settings';
+import { AppButtons } from './AppButtons';
 import { Clock } from '../clock';
 
 const style: CSSProperties = {
@@ -38,7 +38,7 @@ export const App = () => (
 
       <ElectricityPrices />
 
-      <SettingsButton />
+      <AppButtons />
 
       <Clock />
     </div>

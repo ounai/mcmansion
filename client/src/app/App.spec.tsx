@@ -20,8 +20,8 @@ jest.mock('../electricityPrices', () => ({
   ElectricityPrices: () => <div data-testid="ElectricityPrices" />
 }));
 
-jest.mock('../settings', () => ({
-  SettingsButton: () => <div data-testid="SettingsButton" />
+jest.mock('./AppButtons', () => ({
+  AppButtons: () => <div data-testid="AppButtons" />
 }));
 
 jest.mock('../clock', () => ({
@@ -57,10 +57,10 @@ describe('App', () => {
     expect(within(appState).getByTestId('ElectricityPrices')).toBeTruthy();
   });
 
-  it('should render SettingsButton inside AppState', () => {
+  it('should render AppButtons inside AppState', () => {
     const appState = component.getByTestId('AppState');
 
-    expect(within(appState).getByTestId('SettingsButton')).toBeTruthy();
+    expect(within(appState).getByTestId('AppButtons')).toBeTruthy();
   });
 
   it('should render Clock inside AppState', () => {
