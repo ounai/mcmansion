@@ -1,6 +1,7 @@
 import type { CSSProperties } from 'react';
 
 import { SettingsButton } from '../settings';
+import { StopwatchButton } from '../stopwatch';
 
 const style: CSSProperties = {
   position: 'absolute',
@@ -11,5 +12,6 @@ const style: CSSProperties = {
 export const AppButtons = () => (
   <div style={style}>
     <SettingsButton />
+    <StopwatchButton />
   </div>
 );

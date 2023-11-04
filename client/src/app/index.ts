@@ -5,5 +5,6 @@ export * from './config';
 
 export const appButtonStyle: CSSProperties = {
   padding: '11px 10px 10px 10px',
-  borderRadius: 0
+  borderRadius: 0,
+  marginRight: '10px'
 };
