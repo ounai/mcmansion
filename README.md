@@ -7,9 +7,10 @@ Designed to run on a Raspberry Pi with the [800x480 touch display](https://www.r
 * Transit departure board for nearby train and bus stations
 * RuuviTag temperature & humidity tracking across different rooms
 * Hour-by-hour electricity price tracking
-* Customization menu in-app
+* Stopwatch
+* In-app customization
 
-<img src="https://github.com/ounai/mcmansion/assets/19166017/d3c798db-7ab9-48a6-b31e-5f533b67e1ce" width="800" height="auto" />
+<img src="https://github.com/ounai/mcmansion/assets/19166017/fba3fa86-5705-43e6-833b-810cd5e01a46" width="800" height="auto" />
 
 ## Environment variables
 * `POSTGRES_HOST`
