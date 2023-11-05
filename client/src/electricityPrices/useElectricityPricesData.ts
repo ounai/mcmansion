@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 import { useGet } from '../api';
 import { useSelector } from '../state';
-import { selectElectricityPriceMargin } from '../state/electricityPriceMargin';
+import { selectElectricityPriceMargin } from '../state/electricityPriceSettings';
 
 import type { ElectricityPricesData } from '.';
 

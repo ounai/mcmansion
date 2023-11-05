@@ -1,5 +1,5 @@
 import { useSelector } from '../state';
-import { selectElectricityPriceLimits } from '../state/electricityPriceLimits';
+import { selectElectricityPriceLimits } from '../state/electricityPriceSettings';
 
 const colors = {
   cheap: 'var(--bs-success)',

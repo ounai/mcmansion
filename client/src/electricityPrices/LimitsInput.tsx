@@ -1,10 +1,10 @@
 import { useSelector, useDispatch } from '../state';
-import { selectElectricityPriceLimits, setElectricityPriceLimit, type ElectricityPriceLimitsState } from '../state/electricityPriceLimits';
+import { selectElectricityPriceLimits, setElectricityPriceLimit, type ElectricityPriceLimits } from '../state/electricityPriceSettings';
 
 import { NumberInput } from '../shared';
 
 interface LimitInputProps {
-  limit: keyof ElectricityPriceLimitsState
+  limit: keyof ElectricityPriceLimits
   value: number
 }
 
@@ -45,8 +45,8 @@ export const LimitsInput = () => {
       {Object.entries(limits).map(([limit, value]) => (
         <LimitInput
           key={limit}
-          limit={limit as keyof ElectricityPriceLimitsState}
-          value={value as ElectricityPriceLimitsState[keyof ElectricityPriceLimitsState]}
+          limit={limit as keyof ElectricityPriceLimits}
+          value={value as ElectricityPriceLimits[keyof ElectricityPriceLimits]}
         />
       ))}
     </div>

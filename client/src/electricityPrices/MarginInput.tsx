@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from '../state';
-import { selectElectricityPriceMargin, setElectricityPriceMargin } from '../state/electricityPriceMargin';
+import { selectElectricityPriceMargin, setElectricityPriceMargin } from '../state/electricityPriceSettings';
 
 import { NumberInput } from '../shared';
 
