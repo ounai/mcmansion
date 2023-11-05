@@ -3,10 +3,11 @@ import type { CSSProperties } from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
+import { useSelector } from '../state';
+import { selectTransitNumberOfDepartures } from '../state/transitSettings';
+
 import { SmallHeading } from './SmallHeading';
 import { Stoptimes } from './Stoptimes';
-
-import { transitNumberOfDepartures } from '../app';
 
 import type { DeparturesData, StoptimeWithoutPattern } from '.';
 
@@ -21,7 +22,7 @@ const outerRowStyle: CSSProperties = {
 
 const outerColStyle: CSSProperties = {
   borderRight: '1px solid #ccc',
-  height: '200px'
+  paddingBottom: '15px'
 };
 
 const innerRowStyle: CSSProperties = {
@@ -32,7 +33,7 @@ const innerColStyle: CSSProperties = {
   paddingRight: 0
 };
 
-const combine = (departuresData: DeparturesData, prefix: string): StoptimeWithoutPattern[] => {
+const combine = (departuresData: DeparturesData, prefix: string, numberOfDepartures: number): StoptimeWithoutPattern[] => {
   const stoptimes: StoptimeWithoutPattern[] = [];
 
   for (const [key, value] of Object.entries(departuresData)) {
@@ -46,10 +47,12 @@ const combine = (departuresData: DeparturesData, prefix: string): StoptimeWithou
       ? a.serviceDay - b.serviceDay
       : (a.realtimeDeparture ?? a.scheduledDeparture) - (b.realtimeDeparture ?? b.scheduledDeparture)
     )
-    .slice(0, transitNumberOfDepartures);
+    .slice(0, numberOfDepartures);
 };
 
 export const DepartureBoards = ({ departuresData }: Props) => {
+  const numberOfDepartures = useSelector(selectTransitNumberOfDepartures);
+
   const busEmoji = (
     <div style={{
       display: 'inline-block',
@@ -67,7 +70,7 @@ export const DepartureBoards = ({ departuresData }: Props) => {
               🚆 West
             </SmallHeading>
 
-            <Stoptimes stoptimes={combine(departuresData, 'trainWest')} />
+            <Stoptimes stoptimes={combine(departuresData, 'trainWest', numberOfDepartures)} />
           </Col>
 
           <Col xs={6}>
@@ -75,7 +78,7 @@ export const DepartureBoards = ({ departuresData }: Props) => {
               🚆 East
             </SmallHeading>
 
-            <Stoptimes stoptimes={combine(departuresData, 'trainEast')} />
+            <Stoptimes stoptimes={combine(departuresData, 'trainEast', numberOfDepartures)} />
           </Col>
         </Row>
       </Col>
@@ -87,7 +90,7 @@ export const DepartureBoards = ({ departuresData }: Props) => {
               {busEmoji} West
             </SmallHeading>
 
-            <Stoptimes stoptimes={combine(departuresData, 'busWest')} />
+            <Stoptimes stoptimes={combine(departuresData, 'busWest', numberOfDepartures)} />
           </Col>
 
           <Col xs={6}>
@@ -95,7 +98,7 @@ export const DepartureBoards = ({ departuresData }: Props) => {
               {busEmoji} East
             </SmallHeading>
 
-            <Stoptimes stoptimes={combine(departuresData, 'busEast')} />
+            <Stoptimes stoptimes={combine(departuresData, 'busEast', numberOfDepartures)} />
           </Col>
         </Row>
       </Col>

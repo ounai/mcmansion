@@ -20,8 +20,7 @@ export const roomNames = [
 ];
 
 export const transitApiUrl = 'https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql';
-export const transitUpdateIntervalMs = 20_000;
-export const transitNumberOfDepartures = 6;
+export const minTransitUpdateIntervalSeconds = 10;
 
 // TODO: Implement in-app settings & customizer for transit
 export const transitStopConfig = {

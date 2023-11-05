@@ -1,4 +1,5 @@
 export * from './Transit';
+export * from './TransitSettings';
 
 export interface DigitransitSubscriptionKeyResponse {
   digitransitSubscriptionKey: string

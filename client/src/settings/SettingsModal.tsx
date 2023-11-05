@@ -4,6 +4,7 @@ import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 
 import { Modal, type Props as ModalProps } from '../shared/Modal';
+import { TransitSettings } from '../transit';
 import { RuuviTagSelector } from '../ruuviTags';
 import { ElectricitySettings } from '../electricityPrices';
 
@@ -15,7 +16,11 @@ const tabsStyle: CSSProperties = {
 
 export const SettingsModal = ({ show, onHide }: Props) => (
   <Modal show={show} onHide={onHide} size="lg" centered>
-    <Tabs id="setting-tabs" defaultActiveKey="ruuvi-tag-selector" style={tabsStyle}>
+    <Tabs id="setting-tabs" defaultActiveKey="transit-settings" style={tabsStyle}>
+      <Tab eventKey="transit-settings" title="Transit">
+        <TransitSettings />
+      </Tab>
+
       <Tab eventKey="ruuvi-tag-selector" title="RuuviTags">
         <RuuviTagSelector />
       </Tab>
