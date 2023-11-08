@@ -2,6 +2,8 @@ import { useState, useEffect, type CSSProperties } from 'react';
 
 import Button from 'react-bootstrap/Button';
 
+import { useToggle } from '../shared';
+
 import { TimeElement } from './TimeElement';
 import { DateElement } from './DateElement';
 
@@ -22,7 +24,7 @@ export const Clock = () => {
   const [s, setS] = useState(new Date().getSeconds());
 
   const [date, setDate] = useState(new Date());
-  const [showDate, setShowDate] = useState(false);
+  const [showDate, toggleShowDate] = useToggle();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -39,10 +41,6 @@ export const Clock = () => {
       clearInterval(interval);
     };
   }, []);
-
-  const toggleShowDate = () => {
-    setShowDate(d => !d);
-  };
 
   return (
     <Button variant="dark" onClick={toggleShowDate} style={style}>
