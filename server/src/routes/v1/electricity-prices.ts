@@ -7,7 +7,7 @@ const router = new Router('electricity-prices');
 router.get('/', (req, res) => {
   electricityPrices.query()
     .then(data => res.json(data))
-    .catch(() => res.status(500).end('Could not fetch electricity prices from external API'));
+    .catch((error: Error) => res.status(500).end('Could not fetch electricity prices from external API: ' + error.message));
 });
 
 export default router;
