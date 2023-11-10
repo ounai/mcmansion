@@ -21,6 +21,12 @@ export interface RuuviTagData {
   updatedAt: string
 }
 
+export interface RuuviTagHourlyData {
+  tagId: string
+  temperatureAvg: number
+  startDate: string
+}
+
 export interface RuuviTagSelection {
   tagId: string
   name: string

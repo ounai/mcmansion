@@ -5,15 +5,13 @@ import Col from 'react-bootstrap/Col';
 
 import { useSelector } from '../state';
 import { selectRuuviTagSelections } from '../state/ruuviTagSelections';
-import { RuuviTagDataContext } from '.';
+import { RuuviTagDataContext, type NamedRuuviTagData } from '.';
 
 import { RuuviTag } from './RuuviTag';
 
-import type { NamedRuuviTagData } from '.';
-
 export const RuuviTags = () => {
   const ruuviTagSelections = useSelector(selectRuuviTagSelections);
-  const ruuviTagData = useContext(RuuviTagDataContext);
+  const { ruuviTagData } = useContext(RuuviTagDataContext);
 
   // Inner join client selections & server data
   const filteredRuuviTagData: NamedRuuviTagData[] = ruuviTagSelections.flatMap(({ tagId, name }) => {
