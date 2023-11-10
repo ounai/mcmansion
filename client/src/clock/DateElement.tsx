@@ -1,9 +1,11 @@
+import { formatDate } from '../shared';
+
 interface Props {
   date: Date
 }
 
 export const DateElement = ({ date }: Props) => (
   <strong>
-    {new Intl.DateTimeFormat('fi-FI').format(date)}
+    {formatDate(date)}
   </strong>
 );

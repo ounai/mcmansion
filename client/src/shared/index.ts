@@ -5,6 +5,7 @@ export * from './Modal';
 export * from './NumberInput';
 export * from './useToggle';
 export * from './useHourly';
+export * from './dates';
 
 export interface Children {
   children: ReactNode
