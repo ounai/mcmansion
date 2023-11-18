@@ -4,7 +4,6 @@ export const height = '480px';
 export const locale = 'fi-FI';
 
 export const ruuviTagUpdateIntervalMs = 1_000;
-export const ruuviTagMaxSelectionCount = 6;
 
 export const roomNames = [
   'Unknown Room', // Default

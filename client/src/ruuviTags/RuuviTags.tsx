@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, type CSSProperties } from 'react';
 
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -8,6 +8,13 @@ import { selectRuuviTagSelections } from '../state/ruuviTagSelections';
 import { RuuviTagDataContext, type NamedRuuviTagData } from '.';
 
 import { RuuviTag } from './RuuviTag';
+
+const rowStyle: CSSProperties = {
+  width: '100%',
+  margin: 0,
+  overflowX: 'auto',
+  flexWrap: 'nowrap'
+};
 
 export const RuuviTags = () => {
   const ruuviTagSelections = useSelector(selectRuuviTagSelections);
@@ -21,7 +28,7 @@ export const RuuviTags = () => {
   });
 
   return (
-    <Row style={{ width: '100%', margin: 0 }}>
+    <Row style={rowStyle}>
       {filteredRuuviTagData.map(tagData =>
         <Col key={tagData.tagId}>
           <RuuviTag ruuviTagData={tagData} />
