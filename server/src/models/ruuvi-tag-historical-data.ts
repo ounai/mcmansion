@@ -107,7 +107,7 @@ export default class RuuviTagHistoricalData extends Model {
     if (periodEnd !== undefined) {
       queryPeriodEnd = periodEnd;
     } else {
-      // Before start of current hour (no imcomplete periods)
+      // Before start of current hour (no incomplete periods)
       queryPeriodEnd = new Date();
       queryPeriodEnd.setHours(queryPeriodEnd.getHours(), 0, 0, 0);
     }
