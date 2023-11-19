@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'react';
 
-import { locale } from '../app';
+import { useLocale } from '../shared';
 
 import type { Props } from './RuuviTag';
 
@@ -11,6 +11,8 @@ const style: CSSProperties = {
 };
 
 export const TagWarning = ({ ruuviTagData }: Props) => {
+  const locale = useLocale();
+
   const tagUpdatedAt = new Date(ruuviTagData.updatedAt);
 
   const hourAgo = new Date();

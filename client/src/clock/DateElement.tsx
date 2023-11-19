@@ -1,4 +1,4 @@
-import { formatDate } from '../shared';
+import { formatDate, useLocale } from '../shared';
 
 interface Props {
   date: Date
@@ -6,6 +6,6 @@ interface Props {
 
 export const DateElement = ({ date }: Props) => (
   <strong>
-    {formatDate(date)}
+    {formatDate(useLocale(), date)}
   </strong>
 );

@@ -1,7 +1,7 @@
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 
-import { formatTime } from '../shared';
+import { formatTime, useLocale } from '../shared';
 
 import type { RuuviTagHourlyData } from '.';
 
@@ -14,7 +14,9 @@ const formatNumber = (n: number): number =>
   Math.round(n * 100) / 100;
 
 const useOptions = (hourlyData: RuuviTagHourlyData[], tagName: string): Highcharts.Options => {
-  const categories = hourlyData.map(({ startDate }) => formatTime(new Date(startDate)));
+  const locale = useLocale();
+
+  const categories = hourlyData.map(({ startDate }) => formatTime(locale, new Date(startDate)));
   const data = hourlyData.map(({ temperatureAvg }) => formatNumber(Number(temperatureAvg)));
 
   return {
