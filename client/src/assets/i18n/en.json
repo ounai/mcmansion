@@ -13,6 +13,18 @@
     "tagWarning": {
       "lastUpdateDate": "last update on {{ date }}",
       "lastUpdateTime": "last update at {{ time }}"
+    },
+    "ruuviTag": "RuuviTag",
+    "rooms": {
+      "unknownRoom": "Unknown Room",
+      "livingRoom": "Living Room",
+      "bedroom": "Bedroom",
+      "kitchen": "Kitchen",
+      "diningRoom": "Dining Room",
+      "balcony": "Balcony",
+      "bathroom": "Bathroom",
+      "sauna": "Sauna",
+      "outside": "Outside"
     }
   },
   "transit": {

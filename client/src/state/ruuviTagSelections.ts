@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { RootState } from '.';
-import { roomNames } from '../app';
+import { rooms } from '../app';
 
 import type { RuuviTagSelection } from '../ruuviTags';
 
@@ -28,7 +28,7 @@ const reducers = {
     if (!state.selections.find(tag => tag.tagId === action.payload)) {
       state.selections.push({
         tagId: action.payload,
-        name: roomNames[0]
+        name: rooms[0]
       });
     } else {
       state.selections = state.selections.filter(({ tagId }) => tagId !== action.payload);

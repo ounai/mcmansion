@@ -6,18 +6,17 @@ export const defaultLanguage = defaultLocale.slice(0, 2);
 
 export const ruuviTagUpdateIntervalMs = 1_000;
 
-// TODO i18n
-export const roomNames = [
-  'Unknown Room', // Default
+export const rooms = [
+  'unknownRoom', // Default
 
-  'Living Room',
-  'Bedroom',
-  'Kitchen',
-  'Dining Room',
-  'Balcony',
-  'Bathroom',
-  'Sauna',
-  'Outside'
+  'livingRoom',
+  'bedroom',
+  'kitchen',
+  'diningRoom',
+  'balcony',
+  'bathroom',
+  'sauna',
+  'outside'
 ];
 
 export const transitApiUrl = 'https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql';

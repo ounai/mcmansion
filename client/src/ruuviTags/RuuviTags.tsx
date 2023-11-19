@@ -6,6 +6,7 @@ import Col from 'react-bootstrap/Col';
 import { useSelector } from '../state';
 import { selectRuuviTagSelections } from '../state/ruuviTagSelections';
 import { RuuviTagDataContext, type NamedRuuviTagData } from '.';
+import { useT } from '../shared';
 
 import { RuuviTag } from './RuuviTag';
 
@@ -17,6 +18,7 @@ const rowStyle: CSSProperties = {
 };
 
 export const RuuviTags = () => {
+  const t = useT();
   const ruuviTagSelections = useSelector(selectRuuviTagSelections);
   const { ruuviTagData } = useContext(RuuviTagDataContext);
 
@@ -24,7 +26,7 @@ export const RuuviTags = () => {
   const filteredRuuviTagData: NamedRuuviTagData[] = ruuviTagSelections.flatMap(({ tagId, name }) => {
     const tag = ruuviTagData.find(tag => tag.tagId === tagId);
 
-    return tag ? [{ ...tag, name }] : [];
+    return tag ? [{ ...tag, name: t(`ruuviTags.rooms.${name}`) }] : [];
   });
 
   return (

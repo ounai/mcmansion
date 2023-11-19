@@ -2,7 +2,7 @@ import type { ChangeEvent, CSSProperties } from 'react';
 
 import Form from 'react-bootstrap/Form';
 
-import { roomNames } from '../app';
+import { rooms } from '../app';
 import { useDispatch, useSelector } from '../state';
 import { setRuuviTagName, selectRuuviTagSelections } from '../state/ruuviTagSelections';
 import { useT } from '../shared';
@@ -46,6 +46,7 @@ interface Props {
 }
 
 export const TagSelectLabel = ({ tag, checked }: Props) => {
+  const t = useT();
   const dispatch = useDispatch();
   const ruuviTagSelections = useSelector(selectRuuviTagSelections);
 
@@ -67,7 +68,7 @@ export const TagSelectLabel = ({ tag, checked }: Props) => {
 
   return (
     <>
-      RuuviTag <code>{tag.tagId}</code>
+      {t('ruuviTags.ruuviTag')} <code>{tag.tagId}</code>
 
       <div style={{ whiteSpace: 'nowrap' }}>
         <div style={itemStyle}>
@@ -89,9 +90,9 @@ export const TagSelectLabel = ({ tag, checked }: Props) => {
 
       {checked && (
         <Form.Select onChange={onChangeRoom} defaultValue={selection?.name}>
-          {roomNames.map(roomName => (
-            <option key={roomName}>
-              {roomName}
+          {rooms.map(room => (
+            <option key={room} value={room}>
+              {t(`ruuviTags.rooms.${room}`)}
             </option>
           ))}
         </Form.Select>

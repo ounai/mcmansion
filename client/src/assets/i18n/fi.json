@@ -13,6 +13,18 @@
     "tagWarning": {
       "lastUpdateDate": "viimeisin päivitys {{ date }}",
       "lastUpdateTime": "viimeisin päivitys kello {{ time }}"
+    },
+    "ruuviTag": "RuuviTag",
+    "rooms": {
+      "unknownRoom": "Nimetön huone",
+      "livingRoom": "Olohuone",
+      "bedroom": "Makuuhuone",
+      "kitchen": "Keittiö",
+      "diningRoom": "Ruokahuone",
+      "balcony": "Parveke",
+      "bathroom": "Kylpyhuone",
+      "sauna": "Sauna",
+      "outside": "Ulkona"
     }
   },
   "transit": {
