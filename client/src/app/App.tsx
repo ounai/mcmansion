@@ -9,6 +9,8 @@ import { ElectricityPrices } from '../electricityPrices';
 import { AppButtons } from './AppButtons';
 import { Clock } from '../clock';
 
+import './i18n';
+
 const style: CSSProperties = {
   position: 'relative',
   backgroundColor: '#fafafa',

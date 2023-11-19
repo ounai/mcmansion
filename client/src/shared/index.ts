@@ -5,3 +5,4 @@ export * from './useToggle';
 export * from './useHourly';
 export * from './dates';
 export * from './types';
+export * from './useT';
