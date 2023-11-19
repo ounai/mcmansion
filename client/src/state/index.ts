@@ -9,12 +9,14 @@ import {
 import ruuviTagSelections from './ruuviTagSelections';
 import electricityPriceSettings from './electricityPriceSettings';
 import transitSettings from './transitSettings';
+import appSettings from './appSettings';
 
 export const store = configureStore({
   reducer: {
     ruuviTagSelections,
     electricityPriceSettings,
-    transitSettings
+    transitSettings,
+    appSettings
   }
 });
 
