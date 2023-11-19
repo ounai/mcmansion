@@ -42,7 +42,7 @@ const reducers = {
 
     state.margin = rounded;
 
-    localStorage.setItem(localStorageKey, rounded.toString());
+    localStorage.setItem(localStorageKey, JSON.stringify(state));
   },
   setElectricityPriceLimit: (state: ElectricityPriceSettingsState, action: PayloadAction<SetElectricityPriceLimitPayload>) => {
     const rounded = Math.round(action.payload.value * 100) / 100;
