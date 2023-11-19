@@ -1,6 +1,7 @@
 import type { CSSProperties } from 'react';
 
 import { useLocale } from '../app';
+import { useT } from '../shared';
 
 import type { Props } from './RuuviTag';
 
@@ -11,6 +12,7 @@ const style: CSSProperties = {
 };
 
 export const TagWarning = ({ ruuviTagData }: Props) => {
+  const t = useT();
   const locale = useLocale();
 
   const tagUpdatedAt = new Date(ruuviTagData.updatedAt);
@@ -30,7 +32,9 @@ export const TagWarning = ({ ruuviTagData }: Props) => {
 
     return (
       <div style={style}>
-        (last update {displayDateString ? 'on' : 'at'} {displayDateString ? dateString : timeString})
+        ({displayDateString
+          ? t('ruuviTags.tagWarning.lastUpdateDate', { date: dateString })
+          : t('ruuviTags.tagWarning.lastUpdateTime', { time: timeString })})
       </div>
     );
   }

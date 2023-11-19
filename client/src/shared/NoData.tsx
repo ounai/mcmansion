@@ -1,3 +1,5 @@
+// TODO: i18n
+
 interface Props {
   name: string
   loading: boolean

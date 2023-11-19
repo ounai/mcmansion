@@ -5,6 +5,7 @@ import Col from 'react-bootstrap/Col';
 
 import { useSelector } from '../state';
 import { selectTransitNumberOfDepartures } from '../state/transitSettings';
+import { useT } from '../shared';
 
 import { SmallHeading } from './SmallHeading';
 import { Stoptimes } from './Stoptimes';
@@ -51,7 +52,10 @@ const combine = (departuresData: DeparturesData, prefix: string, numberOfDepartu
 };
 
 export const DepartureBoards = ({ departuresData }: Props) => {
+  const t = useT();
   const numberOfDepartures = useSelector(selectTransitNumberOfDepartures);
+
+  const trainEmoji = '🚆';
 
   const busEmoji = (
     <div style={{
@@ -67,7 +71,7 @@ export const DepartureBoards = ({ departuresData }: Props) => {
         <Row style={innerRowStyle}>
           <Col xs={6} style={innerColStyle}>
             <SmallHeading>
-              🚆 West
+              {trainEmoji} {t('transit.departureBoards.west')}
             </SmallHeading>
 
             <Stoptimes stoptimes={combine(departuresData, 'trainWest', numberOfDepartures)} />
@@ -75,7 +79,7 @@ export const DepartureBoards = ({ departuresData }: Props) => {
 
           <Col xs={6}>
             <SmallHeading>
-              🚆 East
+              {trainEmoji} {t('transit.departureBoards.east')}
             </SmallHeading>
 
             <Stoptimes stoptimes={combine(departuresData, 'trainEast', numberOfDepartures)} />
@@ -87,7 +91,7 @@ export const DepartureBoards = ({ departuresData }: Props) => {
         <Row style={innerRowStyle}>
           <Col xs={6} style={innerColStyle}>
             <SmallHeading>
-              {busEmoji} West
+              {busEmoji} {t('transit.departureBoards.west')}
             </SmallHeading>
 
             <Stoptimes stoptimes={combine(departuresData, 'busWest', numberOfDepartures)} />
@@ -95,7 +99,7 @@ export const DepartureBoards = ({ departuresData }: Props) => {
 
           <Col xs={6}>
             <SmallHeading>
-              {busEmoji} East
+              {busEmoji} {t('transit.departureBoards.east')}
             </SmallHeading>
 
             <Stoptimes stoptimes={combine(departuresData, 'busEast', numberOfDepartures)} />

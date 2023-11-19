@@ -5,10 +5,12 @@ import Form from 'react-bootstrap/Form';
 import { roomNames } from '../app';
 import { useDispatch, useSelector } from '../state';
 import { setRuuviTagName, selectRuuviTagSelections } from '../state/ruuviTagSelections';
+import { useT } from '../shared';
 
 import type { RuuviTagData } from '.';
 
-const getLastSeenString = (date: Date): string => {
+const useLastSeenString = (date: Date): string => {
+  const t = useT();
   const result = [];
 
   let s = Math.floor((new Date().getTime() - date.getTime()) / 1000);
@@ -22,7 +24,7 @@ const getLastSeenString = (date: Date): string => {
       const h = Math.floor(m / 60);
 
       if (h >= 24) {
-        return 'a long time';
+        return t('ruuviTags.tagSelect.longTimeAgo');
       }
 
       m %= 60;
@@ -35,7 +37,7 @@ const getLastSeenString = (date: Date): string => {
 
   result.push(`${s}s`);
 
-  return result.join(' ');
+  return t('ruuviTags.tagSelect.timeAgo', { time: result.join(' ') });
 };
 
 interface Props {
@@ -48,7 +50,7 @@ export const TagSelectLabel = ({ tag, checked }: Props) => {
   const ruuviTagSelections = useSelector(selectRuuviTagSelections);
 
   const selection = ruuviTagSelections.find(({ tagId }) => tag.tagId === tagId);
-  const lastSeen = getLastSeenString(new Date(tag.updatedAt));
+  const lastSeenString = useLastSeenString(new Date(tag.updatedAt));
 
   const onChangeRoom = (event: ChangeEvent<HTMLSelectElement>) => {
     dispatch(setRuuviTagName({
@@ -81,7 +83,7 @@ export const TagSelectLabel = ({ tag, checked }: Props) => {
         </div>
 
         <div style={itemStyle}>
-          {lastSeen} ago
+          {lastSeenString}
         </div>
       </div>
 

@@ -1,6 +1,7 @@
 import type { CSSProperties } from 'react';
 
 import { useElectricityPriceColor } from './useElectricityPriceColor';
+import { useT } from '../shared';
 
 import type { ElectricityPriceData as Props } from '.';
 
@@ -16,6 +17,7 @@ const getPriceString = (price: number): string => {
 };
 
 export const ElectricityPrice = ({ startDate, endDate, price }: Props) => {
+  const t = useT();
   const backgroundColor = useElectricityPriceColor(price);
 
   const tomorrow = new Date();
@@ -42,7 +44,7 @@ export const ElectricityPrice = ({ startDate, endDate, price }: Props) => {
       </div>
 
       <div style={priceStyle}>
-        {getPriceString(price)} c/kWh
+        {getPriceString(price)} {t('electricityPrices.unit')}
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from '../state';
 import { selectElectricityPriceLimits, setElectricityPriceLimit, type ElectricityPriceLimits } from '../state/electricityPriceSettings';
 
-import { NumberInput } from '../shared';
+import { NumberInput, useT } from '../shared';
 
 interface LimitInputProps {
   limit: keyof ElectricityPriceLimits
@@ -9,6 +9,7 @@ interface LimitInputProps {
 }
 
 const LimitInput = ({ limit, value }: LimitInputProps) => {
+  const t = useT();
   const dispatch = useDispatch();
 
   const setValue = (newValue: number) => {
@@ -18,15 +19,12 @@ const LimitInput = ({ limit, value }: LimitInputProps) => {
     }));
   };
 
-  let name = limit.replace(/([A-Z])/g, ' $1');
-  name = name[0].toUpperCase() + name.slice(1);
-
   return (
     <div>
-      <div>{name}</div>
+      <div>{t(`settings.electricityPrices.limits.${limit}`)}</div>
 
       <NumberInput
-        suffix=" c/kWh"
+        suffix={' ' + t('electricityPrices.unit')}
         steps={[-1, -0.1, 0.1, 1]}
         value={value}
         setValue={setValue}
@@ -36,11 +34,14 @@ const LimitInput = ({ limit, value }: LimitInputProps) => {
 };
 
 export const LimitsInput = () => {
+  const t = useT();
   const limits = useSelector(selectElectricityPriceLimits);
 
   return (
     <div>
-      <strong>Limits</strong>
+      <strong>
+        {t('settings.electricityPrices.limitsHeading')}
+      </strong>
 
       {Object.entries(limits).map(([limit, value]) => (
         <LimitInput

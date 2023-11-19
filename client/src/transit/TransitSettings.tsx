@@ -1,10 +1,11 @@
 import { useDispatch, useSelector } from '../state';
 import { selectTransitNumberOfDepartures, selectTransitUpdateIntervalSeconds, setTransitNumberOfDepartures, setTransitUpdateIntervalSeconds } from '../state/transitSettings';
 
-import { NumberInput } from '../shared';
+import { NumberInput, useT } from '../shared';
 import { minTransitUpdateIntervalSeconds } from '../app';
 
 export const TransitSettings = () => {
+  const t = useT();
   const dispatch = useDispatch();
 
   const numberOfDepartures = useSelector(selectTransitNumberOfDepartures);
@@ -21,7 +22,9 @@ export const TransitSettings = () => {
   return (
     <div>
       <div>
-        <strong>Number of departures to show</strong>
+        <strong>
+          {t('settings.transit.numberOfDeparturesHeading')}
+        </strong>
 
         <NumberInput
           steps={[-1, 1]}
@@ -33,7 +36,9 @@ export const TransitSettings = () => {
       <hr />
 
       <div>
-        <strong>Departure board update interval (in seconds)</strong>
+        <strong>
+          {t('settings.transit.updateIntervalHeading')}
+        </strong>
 
         <NumberInput
           steps={[-60, -10, -1, 1, 10, 60]}

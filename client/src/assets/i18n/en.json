@@ -1,1 +1,58 @@
-{}
+{
+  "electricityPrices": {
+    "unit": "c/kWh"
+  },
+  "ruuviTags": {
+    "chart": {
+      "averageTemperature": "Average temperature"
+    },
+    "tagSelect": {
+      "timeAgo": "{{ time }} ago",
+      "longTimeAgo": "a long time ago"
+    },
+    "tagWarning": {
+      "lastUpdateDate": "last update on {{ date }}",
+      "lastUpdateTime": "last update at {{ time }}"
+    }
+  },
+  "transit": {
+    "departureBoards": {
+      "west": "West",
+      "east": "East"
+    },
+    "stoptimes": {
+      "canceled": "canceled",
+      "now": "now",
+      "minutes": "{{ minutes }} min"
+    }
+  },
+  "settings": {
+    "tabTitles": {
+      "app": "App",
+      "transit": "Transit",
+      "ruuviTags": "RuuviTags",
+      "electricity": "Electricity"
+    },
+    "app": {
+      "locale": {
+        "english": "English",
+        "finnish": "Finnish"
+      },
+      "localeHeading": "Locale"
+    },
+    "electricityPrices": {
+      "limits": {
+        "cheap": "Cheap",
+        "moderate": "Moderate",
+        "expensive": "Expensive",
+        "veryExpensive": "Very Expensive"
+      },
+      "limitsHeading": "Limits",
+      "marginHeading": "Margin"
+    },
+    "transit": {
+      "numberOfDeparturesHeading": "Number of departures to show",
+      "updateIntervalHeading": "Departure board update interval (in seconds)"
+    }
+  }
+}

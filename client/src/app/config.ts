@@ -5,6 +5,7 @@ export const defaultLocale = 'en-US';
 
 export const ruuviTagUpdateIntervalMs = 1_000;
 
+// TODO i18n
 export const roomNames = [
   'Unknown Room', // Default
 
