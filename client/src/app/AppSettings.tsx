@@ -1,4 +1,5 @@
 import type { ChangeEvent } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import Form from 'react-bootstrap/Form';
 
@@ -11,14 +12,19 @@ export const AppSettings = () => {
   const t = useT();
   const locale = useLocale();
   const dispatch = useDispatch();
+  const { i18n } = useTranslation();
 
   const localeOptions = {
     'en-US': t('settings.app.locale.english'),
     'fi-FI': t('settings.app.locale.finnish')
   };
 
-  const onChangeLocale = (event: ChangeEvent<HTMLSelectElement>) =>
-    dispatch(setLocale(event.currentTarget.value as keyof typeof localeOptions));
+  const onChangeLocale = (event: ChangeEvent<HTMLSelectElement>) => {
+    const newLocale = event.currentTarget.value as keyof typeof localeOptions;
+
+    dispatch(setLocale(newLocale));
+    void i18n.changeLanguage(newLocale.slice(0, 2));
+  };
 
   return (
     <div>

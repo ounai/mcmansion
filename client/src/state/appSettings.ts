@@ -14,6 +14,8 @@ const defaultState: AppSettingsState = {
 const localStorageKey = 'app-settings';
 const localStorageValue = localStorage.getItem(localStorageKey);
 
+export const languageLocalStorageKey = 'app-settings-language';
+
 const initialState: AppSettingsState = localStorageValue
   ? JSON.parse(localStorageValue) as AppSettingsState
   : defaultState;
@@ -23,6 +25,7 @@ const reducers = {
     state.locale = action.payload;
 
     localStorage.setItem(localStorageKey, JSON.stringify(state));
+    localStorage.setItem(languageLocalStorageKey, action.payload);
   }
 };
 

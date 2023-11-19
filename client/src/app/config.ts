@@ -2,6 +2,7 @@ export const width = '800px';
 export const height = '480px';
 
 export const defaultLocale = 'en-US';
+export const defaultLanguage = defaultLocale.slice(0, 2);
 
 export const ruuviTagUpdateIntervalMs = 1_000;
 
