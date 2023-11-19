@@ -6,7 +6,3 @@ export interface ElectricityPriceData {
   startDate: string
   endDate: string
 }
-
-export interface ElectricityPricesData {
-  prices: ElectricityPriceData[]
-}

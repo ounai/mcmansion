@@ -2,18 +2,23 @@ import axios from 'axios';
 
 import { config } from '../config';
 
-export interface ElectricityPrice {
-  price: number
-  startDate: string
-  endDate: string
+import { ElectricityPrice } from '../models';
+
+export interface ElectricityPricesResponse {
+  prices: Array<{
+    price: number
+    startDate: string
+    endDate: string
+  }>
 }
 
-export interface ElectricityPrices {
-  prices: ElectricityPrice[]
-}
+export const query = async (): Promise<ElectricityPrice[]> => {
+  const { data } = await axios.get<ElectricityPricesResponse>(config.electricityPrices.apiUrl);
 
-export const query = async (): Promise<ElectricityPrices> => {
-  const { data } = await axios.get<ElectricityPrices>(config.electricityPrices.apiUrl);
+  const dbPrices = await ElectricityPrice.bulkCreate(data.prices, {
+    fields: ['startDate', 'endDate', 'price'],
+    updateOnDuplicate: ['startDate']
+  });
 
-  return data;
+  return dbPrices;
 };
