@@ -1,1 +1,58 @@
-{}
+{
+  "electricityPrices": {
+    "unit": "c/kWh"
+  },
+  "ruuviTags": {
+    "chart": {
+      "averageTemperature": "Lämpötila (keskiarvo)"
+    },
+    "tagSelect": {
+      "timeAgo": "{{ time }} sitten",
+      "longTimeAgo": "kauan sitten"
+    },
+    "tagWarning": {
+      "lastUpdateDate": "viimeisin päivitys {{ date }}",
+      "lastUpdateTime": "viimeisin päivitys kello {{ time }}"
+    }
+  },
+  "transit": {
+    "departureBoards": {
+      "west": "Länteen",
+      "east": "Itään"
+    },
+    "stoptimes": {
+      "canceled": "peruttu",
+      "now": "nyt",
+      "minutes": "{{ minutes }} min"
+    }
+  },
+  "settings": {
+    "tabTitles": {
+      "app": "Sovellus",
+      "transit": "Joukkoliikenne",
+      "ruuviTags": "RuuviTagit",
+      "electricity": "Sähkö"
+    },
+    "app": {
+      "locale": {
+        "english": "Englanniksi",
+        "finnish": "Suomeksi"
+      },
+      "localeHeading": "Lokalisointi"
+    },
+    "electricityPrices": {
+      "limits": {
+        "cheap": "Halpa",
+        "moderate": "Kohtalainen",
+        "expensive": "Kallis",
+        "veryExpensive": "Erittäin kallis"
+      },
+      "limitsHeading": "Hintarajat",
+      "marginHeading": "Marginaali"
+    },
+    "transit": {
+      "numberOfDeparturesHeading": "Näytettävien lähtöjen määrä",
+      "updateIntervalHeading": "Päivityksen aikaväli (sekunneissa)"
+    }
+  }
+}
