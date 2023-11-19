@@ -1,7 +1,8 @@
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 
-import { formatTime, useLocale } from '../shared';
+import { formatTime } from '../shared';
+import { useLocale } from '../app';
 
 import type { RuuviTagHourlyData } from '.';
 

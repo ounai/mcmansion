@@ -1,4 +1,5 @@
-import { formatDate, useLocale } from '../shared';
+import { formatDate } from '../shared';
+import { useLocale } from '../app';
 
 interface Props {
   date: Date

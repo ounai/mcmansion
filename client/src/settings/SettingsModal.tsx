@@ -7,6 +7,7 @@ import { Modal, type Props as ModalProps } from '../shared/Modal';
 import { TransitSettings } from '../transit';
 import { RuuviTagSelector } from '../ruuviTags';
 import { ElectricitySettings } from '../electricityPrices';
+import { AppSettings } from '../app';
 
 type Props = Pick<ModalProps, 'show' | 'onHide'>;
 
@@ -16,7 +17,11 @@ const tabsStyle: CSSProperties = {
 
 export const SettingsModal = ({ show, onHide }: Props) => (
   <Modal show={show} onHide={onHide} size="lg" centered>
-    <Tabs id="setting-tabs" defaultActiveKey="transit-settings" style={tabsStyle}>
+    <Tabs id="setting-tabs" defaultActiveKey="app-settings" style={tabsStyle}>
+      <Tab eventKey="app-settings" title="App">
+        <AppSettings />
+      </Tab>
+
       <Tab eventKey="transit-settings" title="Transit">
         <TransitSettings />
       </Tab>

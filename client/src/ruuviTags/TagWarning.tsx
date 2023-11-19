@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'react';
 
-import { useLocale } from '../shared';
+import { useLocale } from '../app';
 
 import type { Props } from './RuuviTag';
 
