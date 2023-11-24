@@ -18,7 +18,8 @@ export const config = {
   },
   electricityPrices: {
     apiUrl: 'https://api.porssisahko.net/v1/latest-prices.json'
-  }
+  },
+  ruuviTagDatabaseDisabled: process.env.DISABLE_RUUVI_TAG_DATABASE === 'true'
 };
 
 if (!testingEnvironment) {

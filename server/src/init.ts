@@ -10,5 +10,10 @@ export const init = async (config: Config): Promise<void> => {
 
   initAPI(config.api.port);
   await initDB(config.db);
-  await initRuuviDB({ ...config.db, dialect: 'postgres' });
+
+  if (!config.ruuviTagDatabaseDisabled) {
+    await initRuuviDB({ ...config.db, dialect: 'postgres' });
+  } else {
+    console.log('RuuviTag database is disabled');
+  }
 };
