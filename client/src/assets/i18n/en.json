@@ -4,7 +4,9 @@
   },
   "ruuviTags": {
     "chart": {
-      "averageTemperature": "Average temperature"
+      "averageTemperature": "Average temperature",
+      "temperature": "Temperature",
+      "all": "All"
     },
     "tagSelect": {
       "timeAgo": "{{ time }} ago",

@@ -2,7 +2,7 @@ import { useContext, useMemo, type CSSProperties } from 'react';
 
 import { Modal, useToggle } from '../shared';
 import { RuuviTagDataContext, type NamedRuuviTagData } from '.';
-import { RuuviTagChart } from './RuuviTagChart';
+import { RuuviTagLiveChart } from './RuuviTagLiveChart';
 import { TagHumidity } from './TagHumidity';
 import { TagTemperature } from './TagTemperature';
 import { TagName } from './TagName';
@@ -19,19 +19,19 @@ const style: CSSProperties = {
 };
 
 export const RuuviTag = ({ ruuviTagData }: Props) => {
-  const { ruuviTagHourlyData } = useContext(RuuviTagDataContext);
+  const { measurementHistory } = useContext(RuuviTagDataContext);
   const [showChart, toggleShowChart] = useToggle();
 
   const chartElement = useMemo(() => (
-    <RuuviTagChart
+    <RuuviTagLiveChart
       tagName={ruuviTagData.name}
-      ruuviTagHourlyData={ruuviTagHourlyData.filter(({ tagId }) => tagId === ruuviTagData.tagId)}
+      measurements={measurementHistory[ruuviTagData.tagId]}
     />
-  ), [ruuviTagHourlyData, ruuviTagData.tagId, ruuviTagData.name]);
+  ), [measurementHistory, ruuviTagData.tagId, ruuviTagData.name]);
 
   return (
     <>
-      <Modal show={showChart} onHide={toggleShowChart}>
+      <Modal size="xl" show={showChart} onHide={toggleShowChart}>
         {chartElement}
       </Modal>
 

@@ -4,7 +4,9 @@
   },
   "ruuviTags": {
     "chart": {
-      "averageTemperature": "Lämpötila (keskiarvo)"
+      "averageTemperature": "Lämpötila (keskiarvo)",
+      "temperature": "Lämpötila",
+      "all": "Kaikki"
     },
     "tagSelect": {
       "timeAgo": "{{ time }} sitten",
