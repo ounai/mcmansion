@@ -17,4 +17,11 @@ router.get('/hourly', (req, res) => {
     .catch((error: Error) => res.status(500).end('Could not get hourly RuuviTag data: ' + error.message));
 });
 
+// GET /api/v1/ruuvi-tag-data/:tagId
+router.get('/:tagId', (req, res) => {
+  RuuviTagData.findByPk(req.params.tagId)
+    .then(data => res.json(data))
+    .catch((error: Error) => res.status(500).end('Could not get RuuviTag data: ' + error.message));
+});
+
 export default router;
