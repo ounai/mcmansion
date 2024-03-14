@@ -44,6 +44,7 @@ const combine = (departuresData: DeparturesData, prefix: string, numberOfDepartu
   }
 
   return stoptimes
+    .filter(stoptime => stoptime.headsign)
     .sort((a, b) => a.serviceDay !== b.serviceDay
       ? a.serviceDay - b.serviceDay
       : (a.realtimeDeparture ?? a.scheduledDeparture) - (b.realtimeDeparture ?? b.scheduledDeparture)
