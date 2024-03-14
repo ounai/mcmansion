@@ -26,7 +26,7 @@ export const minTransitUpdateIntervalSeconds = 10;
 export const transitStopConfig = {
   bus: {
     east: ['HSL:2613275', 'HSL:2612219'],
-    west: ['HSL:2613274', 'HSL:2612220']
+    west: ['HSL:2613274', 'HSL:2612220', 'HSL:2611206']
   },
   train: {
     east: ['HSL:2612551'],
