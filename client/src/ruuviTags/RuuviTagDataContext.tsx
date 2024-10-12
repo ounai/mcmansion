@@ -3,6 +3,9 @@ import { createContext, useRef, useEffect } from 'react';
 import { useRuuviTagData } from './useRuuviTagData';
 import { useRuuviTagHourlyData } from './useRuuviTagHourlyData';
 import { NoData, type Children } from '../shared';
+import { ruuviTagMaxMeasurementCount } from '../app';
+import { useSelector } from '../state';
+import { selectRuuviTagSelections } from '../state/ruuviTagSelections';
 
 import type { RuuviTagData, RuuviTagHourlyData, MeasurementHistory } from '.';
 
@@ -19,15 +22,23 @@ export const RuuviTagDataContext = createContext<Context>({
 });
 
 export const RuuviTagDataContextProvider = ({ children }: Children) => {
+  const ruuviTagSelections = useSelector(selectRuuviTagSelections);
+
   const { ruuviTagData, error, loading } = useRuuviTagData();
   const { ruuviTagHourlyData, error: hourlyError, loading: hourlyLoading } = useRuuviTagHourlyData();
 
   const measurementHistory = useRef<MeasurementHistory>({});
 
   useEffect(() => {
-    if (ruuviTagData === null) return;
+    if (ruuviTagData === null) {
+      return;
+    }
 
     for (const tag of ruuviTagData) {
+      if (ruuviTagSelections.every(s => s.tagId !== tag.tagId)) {
+        continue;
+      }
+
       if (!Object.keys(measurementHistory.current).includes(tag.tagId)) {
         measurementHistory.current[tag.tagId] = [tag];
       } else {
@@ -36,13 +47,13 @@ export const RuuviTagDataContextProvider = ({ children }: Children) => {
         if (tag.updatedAt > previous.updatedAt) {
           measurementHistory.current[tag.tagId].push(tag);
 
-          if (measurementHistory.current[tag.tagId].length > 10_000) {
+          if (measurementHistory.current[tag.tagId].length > ruuviTagMaxMeasurementCount) {
             measurementHistory.current[tag.tagId].shift();
           }
         }
       }
     }
-  }, [ruuviTagData]);
+  }, [ruuviTagData, ruuviTagSelections]);
 
   if (ruuviTagData === null) {
     return <NoData name="RuuviTag" error={error} loading={loading} />;
