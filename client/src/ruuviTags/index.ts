@@ -35,3 +35,4 @@ export interface RuuviTagSelection {
 export type NamedRuuviTagData = RuuviTagData & Pick<RuuviTagSelection, 'name'>;
 
 export type MeasurementHistory = Record<string, RuuviTagData[]>;
+export type MeasurementHistoryIndex = Record<string, number>;

@@ -5,7 +5,7 @@ export const defaultLocale = 'en-US';
 export const defaultLanguage = defaultLocale.slice(0, 2);
 
 export const ruuviTagUpdateIntervalMs = 1_000;
-export const ruuviTagMaxMeasurementCount = 10; // 10_000;
+export const ruuviTagMaxMeasurementCount = 10_000;
 
 export const rooms = [
   'unknownRoom', // Default

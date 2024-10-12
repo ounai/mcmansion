@@ -19,15 +19,16 @@ const style: CSSProperties = {
 };
 
 export const RuuviTag = ({ ruuviTagData }: Props) => {
-  const { measurementHistory } = useContext(RuuviTagDataContext);
+  const { measurementHistoryRef } = useContext(RuuviTagDataContext);
   const [showChart, toggleShowChart] = useToggle();
 
   const chartElement = useMemo(() => (
     <RuuviTagLiveChart
+      tagId={ruuviTagData.tagId}
       tagName={ruuviTagData.name}
-      measurements={measurementHistory[ruuviTagData.tagId]}
+      measurementHistoryRef={measurementHistoryRef}
     />
-  ), [measurementHistory, ruuviTagData.tagId, ruuviTagData.name]);
+  ), [ruuviTagData.tagId, ruuviTagData.name, measurementHistoryRef]);
 
   return (
     <>

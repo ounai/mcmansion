@@ -1,33 +1,35 @@
 /* eslint-disable prefer-arrow-callback, prefer-arrow/prefer-arrow-functions */
 
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, type RefObject } from 'react';
 
 import Highcharts from 'highcharts/highstock';
 import HighchartsReact from 'highcharts-react-official';
 
 import { useT } from '../shared';
 
-import type { RuuviTagData } from '.';
+import type { MeasurementHistory } from '.';
 
 interface Props {
-  measurements: RuuviTagData[]
+  tagId: string
   tagName: string
+  measurementHistoryRef: RefObject<MeasurementHistory>
 }
 
 const formatNumber = (n: number): number =>
   Math.round(n * 100) / 100;
 
-export const RuuviTagLiveChart = ({ measurements, tagName }: Props) => {
+export const RuuviTagLiveChart = ({ tagId, tagName, measurementHistoryRef }: Props) => {
   const t = useT();
   const chartRef = useRef<HighchartsReact.RefObject>(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      if (!chartRef.current) return null;
+      if (!chartRef.current || !measurementHistoryRef.current) return null;
 
       // eslint-disable-next-line
       const series = chartRef.current.chart.series[0];
 
+      const measurements = measurementHistoryRef.current[tagId];
       const lastMeasurement = measurements.at(-1)!;
 
       // eslint-disable-next-line
@@ -40,11 +42,15 @@ export const RuuviTagLiveChart = ({ measurements, tagName }: Props) => {
     return () => {
       clearInterval(interval);
     };
-  }, [measurements]);
+  }, [tagId, measurementHistoryRef]);
+
+  if (!measurementHistoryRef.current) {
+    return null;
+  }
 
   const data: [number, number][] = [];
 
-  for (const measurement of measurements) {
+  for (const measurement of measurementHistoryRef.current[tagId]) {
     data.push([
       Math.round(new Date(measurement.updatedAt).getTime() / 1000) * 1000,
       formatNumber(Number(measurement.temperature))
