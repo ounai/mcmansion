@@ -20,7 +20,7 @@ export const rooms = [
   'outside'
 ];
 
-export const transitApiUrl = 'https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql';
+export const transitApiUrl = 'https://api.digitransit.fi/routing/v2/hsl/gtfs/v1';
 export const minTransitUpdateIntervalSeconds = 10;
 
 // TODO: Implement in-app settings & customizer for transit
